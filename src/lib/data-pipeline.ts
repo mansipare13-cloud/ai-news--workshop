@@ -1,10 +1,9 @@
 import { setupDatabase } from './database-setup';
 import { fetchTopTechArticles, RawNewsArticle } from './news-fetcher';
 import { aiProcessor, ProcessedNewsArticle } from './ai-processor';
-import { ObjectId } from 'mongodb';
 
 export class DataPipeline {
-  private db: any;
+  private db: Db | null = null;
 
   async initialize() {
     const { db } = await setupDatabase();
@@ -181,7 +180,7 @@ export class DataPipeline {
         { $sort: { count: -1 } }
       ];
       const categoryResults = await this.db.collection('articles').aggregate(categoryPipeline).toArray();
-      const categories = categoryResults.reduce((acc: any, item: any) => {
+      const categories = categoryResults.reduce((acc: Record<string, number>, item: { _id: string; count: number }) => {
         acc[item._id] = item.count;
         return acc;
       }, {});

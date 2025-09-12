@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { setupDatabase } from '@/lib/database-setup';
-import { ObjectId } from 'mongodb';
 
 export async function POST() {
   try {
@@ -42,8 +41,8 @@ export async function POST() {
       const errorDetails = {
         name: error instanceof Error ? error.name : 'Unknown',
         message: error instanceof Error ? error.message : 'Unknown error',
-        code: (error as any)?.code || 'Unknown',
-        codeName: (error as any)?.codeName || 'Unknown'
+        code: (error as Record<string, unknown>)?.code || 'Unknown',
+        codeName: (error as Record<string, unknown>)?.codeName || 'Unknown'
       };
       
       return NextResponse.json({

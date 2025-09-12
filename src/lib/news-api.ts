@@ -15,7 +15,7 @@ class NewsAPIClient {
     this.baseUrl = NEWS_API_BASE_URL;
   }
 
-  async request(endpoint: string, params: Record<string, any> = {}) {
+  async request(endpoint: string, params: Record<string, string | number> = {}) {
     const url = new URL(`${this.baseUrl}${endpoint}`);
     url.searchParams.append('apiKey', this.apiKey);
     

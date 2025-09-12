@@ -131,25 +131,25 @@ export async function createArticlesCollection() {
     // Create indexes for better performance (with error handling to avoid duplicates)
     try {
       await db.collection('articles').createIndex({ category: 1 });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
     
     try {
       await db.collection('articles').createIndex({ datePosted: -1 });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
     
     try {
       await db.collection('articles').createIndex({ sourceUrl: 1 }, { unique: true });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
     
     try {
       await db.collection('articles').createIndex({ createdAt: -1 });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
 
@@ -253,19 +253,19 @@ export async function createChatsCollection() {
     // Create indexes for better performance (with error handling to avoid duplicates)
     try {
       await db.collection('chats').createIndex({ sessionId: 1 });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
     
     try {
       await db.collection('chats').createIndex({ articleId: 1 });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
     
     try {
       await db.collection('chats').createIndex({ createdAt: -1 });
-    } catch (error) {
+    } catch {
       // Index might already exist, ignore error
     }
 

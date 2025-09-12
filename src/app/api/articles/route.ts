@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     const skip = (page - 1) * limit;
 
     // Build query
-    const query: any = {};
+    const query: Record<string, string> = {};
     if (category && category !== 'all') {
       query.category = category;
     }
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
           hasNextPage: page < Math.ceil(totalCount / limit),
           hasPrevPage: page > 1
         },
-        categories: categories.reduce((acc: any, cat: any) => {
+        categories: categories.reduce((acc: Record<string, number>, cat: { _id: string; count: number }) => {
           acc[cat._id] = cat.count;
           return acc;
         }, {})
