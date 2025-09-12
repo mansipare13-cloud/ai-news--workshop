@@ -1,6 +1,7 @@
 import { setupDatabase } from './database-setup';
 import { fetchTopTechArticles, RawNewsArticle } from './news-fetcher';
 import { aiProcessor, ProcessedNewsArticle } from './ai-processor';
+import { Db } from 'mongodb';
 
 export class DataPipeline {
   private db: Db | null = null;
