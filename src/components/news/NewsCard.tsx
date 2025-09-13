@@ -22,7 +22,7 @@ export function NewsCard({ article }: NewsCardProps) {
 
   return (
     <Link href={`/article/${article._id}`} className="block h-full">
-      <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group">
+      <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group dark-card">
         <div className="relative aspect-[16/10] overflow-hidden">
           <Image
             src={article.coverImage}
@@ -41,15 +41,15 @@ export function NewsCard({ article }: NewsCardProps) {
         </div>
         
         <CardContent className="p-4 space-y-3">
-          <h3 className="font-semibold text-lg leading-tight line-clamp-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="font-semibold text-lg leading-tight line-clamp-2 group-hover:text-blue-400 transition-colors text-foreground">
             {article.title}
           </h3>
           
-          <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed">
+          <p className="text-muted-foreground text-sm line-clamp-3 leading-relaxed">
             {article.quickSummary}
           </p>
           
-          <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t">
+          <div className="flex items-center justify-between text-xs text-muted-foreground pt-2 border-t">
             <div className="flex items-center space-x-2">
               <Image
                 src={article.publisherLogo}
@@ -63,7 +63,7 @@ export function NewsCard({ article }: NewsCardProps) {
             <span>{format(new Date(article.datePosted), 'MMM d')}</span>
           </div>
           
-          <div className="text-xs text-gray-400">
+          <div className="text-xs text-muted-foreground/70">
             By {article.authorName}
           </div>
         </CardContent>

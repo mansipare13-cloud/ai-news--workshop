@@ -111,7 +111,7 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
       {/* Floating Chat Button */}
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg z-50 glass-chat backlit-glow"
         size="icon"
       >
         <MessageCircle className="w-6 h-6" />
@@ -119,10 +119,10 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
 
       {/* Chat Dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-md h-[600px] flex flex-col p-0 overflow-hidden">
-          <DialogHeader className="p-4 border-b flex-shrink-0">
-            <DialogTitle className="flex items-center space-x-2">
-              <Bot className="w-5 h-5 text-blue-600" />
+        <DialogContent className="max-w-md h-[600px] flex flex-col p-0 overflow-hidden glass-chat backlit-glow">
+          <DialogHeader className="p-4 border-b flex-shrink-0 border-white/10">
+            <DialogTitle className="flex items-center space-x-2 text-foreground">
+              <Bot className="w-5 h-5 text-blue-400" />
               <span>AI Assistant</span>
             </DialogTitle>
           </DialogHeader>
@@ -143,7 +143,7 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
                       className={`w-8 h-8 rounded-full flex items-center justify-center ${
                         message.isUser
                           ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 text-gray-600'
+                          : 'bg-gray-700 text-gray-300'
                       }`}
                     >
                       {message.isUser ? (
@@ -156,7 +156,7 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
                       className={`px-3 py-2 rounded-lg break-words overflow-hidden w-full ${
                         message.isUser
                           ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 text-gray-900'
+                          : 'bg-gray-800/50 text-gray-100 border border-gray-700/50'
                       }`}
                     >
                       <p className="text-sm whitespace-pre-wrap break-words chat-message">{message.content}</p>
@@ -173,10 +173,10 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="flex items-start space-x-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-gray-700 text-gray-300 flex items-center justify-center">
                       <Bot className="w-4 h-4" />
                     </div>
-                    <div className="bg-gray-100 text-gray-900 px-3 py-2 rounded-lg">
+                    <div className="bg-gray-800/50 text-gray-100 px-3 py-2 rounded-lg border border-gray-700/50">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -189,9 +189,9 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
             </div>
           </ScrollArea>
 
-          <div className="p-4 border-t">
+          <div className="p-4 border-t border-white/10">
             {error && (
-              <div className="mb-3 p-2 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+              <div className="mb-3 p-2 bg-red-900/20 border border-red-500/30 rounded-lg text-sm text-red-400">
                 {error}
               </div>
             )}
@@ -201,7 +201,7 @@ export function AIChatbot({ articleId, articleTitle }: AIChatbotProps) {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about this article..."
-                className="flex-1"
+                className="flex-1 bg-gray-800/50 border-gray-700/50 text-gray-100 placeholder-gray-400"
                 disabled={isLoading}
               />
               <Button
